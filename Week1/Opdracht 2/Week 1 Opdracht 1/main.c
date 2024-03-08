@@ -6,7 +6,7 @@
 
 int main(void)
 {
-	DDRD = 0xFF //puts PORTD as output
+	DDRD = 0xFF; //puts PORTD as output
 	
 	while (1)
 	{

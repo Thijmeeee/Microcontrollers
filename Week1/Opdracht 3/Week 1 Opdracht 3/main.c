@@ -6,7 +6,7 @@
 
 int main (void)
 {
-	DDRD = 0xFF		//puts PORTD as output
+	DDRD = 0xFF;		//puts PORTD as output
 	PORTC = 0x01;	//puts PORTC.0 as input
 	
 	while (1)
@@ -14,10 +14,10 @@ int main (void)
 		//when button C0 is pressed LED D7 starts flashing
 		if (PINC & 0x01)
 		{
-			PORTD = BIT(7)			//turns LED D7 on
+			PORTD = BIT(7);			//turns LED D7 on
 			_delay_ms(250);
 			PORTD = 0b00000000;		//turns all LEDS on D off
-			_delay_ms(250)
+			_delay_ms(250);
 		}
 		else
 		{
