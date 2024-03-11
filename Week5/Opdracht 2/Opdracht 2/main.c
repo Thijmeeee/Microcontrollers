@@ -125,7 +125,7 @@ void displayOff()
 }
 
 void writeLedDisplay(int value){
-	//filtert alles hoger dan 10000 en lager dan 0 eruit.
+	//checkt of het getal positief en max 4 getallen bevat
 	if (value > 0 && value <= 10000){
 			int array [4];
 			int digit = 0;
@@ -137,25 +137,30 @@ void writeLedDisplay(int value){
 				value /= 10;
 			}
 			
-			//loopt door de array en schrijft hem naar de display
+			//loopt door de array en schrijft het naar de display
 			for(int i = 1; i < (sizeof(array) / sizeof(array[0]))+1; i++){
 				spi_writeWord(i, array[i-1]);
 			}
 	}
+	//checkt of het getal negatief en max 3 getallen bevat
 	else if (value < 0 && value > -1000){
 		int array [3];
 		int digit = 0;
 		
 		
 		value = value*-1;
+		
+		//loopt door het getal met modulo 10 en zet elke digit in een array
 		while (value > 0) {
 			array[digit] = value % 10;
 			digit++;
 			value /= 10;
 		}
 		
+		//schrijft een "-" naar de eerste 7-segment
 		spi_writeWord(4, 10);
 		
+		//loopt door de array en schrijft het naar de display
 		for (int i = 1; i < (sizeof(array)/ sizeof(array[0]))+1; i++){
 			spi_writeWord(i, array[i-1]);
 		}
